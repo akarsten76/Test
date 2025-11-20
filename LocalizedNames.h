@@ -1,19 +1,32 @@
 #pragma once
 
 // Einige RegUtil-Funktionen wurden hierhin ausgelagert, damit die Excel-Tabelle von jedem Modul
-// nicht unnötig mit _TR-Makros zugemüllt wird.
+// nicht unnÃ¶tig mit _TR-Makros zugemÃ¼llt wird.
 
-namespace LocalizedNames
+class COMMDLL_API LocalizedNames
 {
-	// Die Funktionen liefern nicht mehr bool zurück sondern CString, 
-	// um Einzeiler zu ermöglichen. Ein leerer String ist als false zu interpretieren.
-	// Mixed heisst Original + Übersetzung
-	COMMDLL_API CString GetLanguageName(const CString& sAbbr, bool bMixed = true);
-	COMMDLL_API CString GetLanguageAbbr(const CString& sName, bool bMixed = true);
-	COMMDLL_API CString GetLanguageAbbr(WORD nLCode);
-	COMMDLL_API CString GetRegionAbbr(WORD nLCode);
-	COMMDLL_API WORD    GetSystemLCID();
-	COMMDLL_API int     GetLCID(const CString& sAbbr);
-	COMMDLL_API int     GetLanguageCodepage(const CString& sAbbr);
-	COMMDLL_API CString GetRegionName(const CString& sAbbr);
-}
+public:
+	// Die Funktionen liefern nicht mehr bool zurÃ¼ck sondern CString,
+	// um Einzeiler zu ermÃ¶glichen. Ein leerer String ist als false zu interpretieren.
+	// Mixed heisst Original + Ãœbersetzung
+	static CString GetLanguageName(const CString& sAbbr, bool bMixed = true);
+	static CString GetLanguageAbbr(const CString& sName, bool bMixed = true);
+	static CString GetLanguageAbbr(WORD nLCode);
+	static CString GetRegionAbbr(WORD nLCode);
+	static WORD    GetSystemLCID();
+	static int     GetLCID(const CString& sAbbr);
+	static int     GetLanguageCodepage(const CString& sAbbr);
+	static CString GetRegionName(const CString& sAbbr);
+
+private:
+	LocalizedNames();
+	static LocalizedNames& GetInstance();
+
+	CString GetMixedLanguageName(const CString& sAbbr);
+	CString GetMixedLanguageAbbr(const CString& sMixedName);
+	static CString MakeUpper(CString s) { return s.MakeUpper(); }
+
+	std::map<CString, CString> mapAbbrToLangName;
+	std::map<CString, int> mapAbbrToLCID, mapAbbrToCodePage;
+	std::map<int, CString> mapLCIDToAbbr;
+};
