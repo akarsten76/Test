@@ -5,25 +5,14 @@
 #pragma warning(push)
 #pragma warning(disable: 4566) // cannot be represented in the current code page
 
-namespace LocalizedNames
+LocalizedNames& LocalizedNames::GetInstance()
 {
-	void InitLanguageMaps();
-
-	CString GetMixedLanguageName(const CString& sAbbr);
-	CString GetMixedLanguageAbbr(const CString& sMixedName);
-	CString MakeUpper(CString s) { return s.MakeUpper(); }
-
-	std::map<CString, CString> mapAbbrToLangName;
-	std::map<CString, int> mapAbbrToLCID, mapAbbrToCodePage;
-	std::map<int, CString> mapLCIDToAbbr;
+	static LocalizedNames instance;
+	return instance;
 }
 
-void LocalizedNames::InitLanguageMaps()
+LocalizedNames::LocalizedNames()
 {
-	static bool bDone = false;
-	if (bDone)
-		return;
-
 	// die Originalnamen in jeweiliger Sprache mappen
 	mapAbbrToLangName[L"DE"] = L"Deutsch";
 	mapAbbrToLangName[L"EN"] = L"English";
@@ -125,14 +114,12 @@ void LocalizedNames::InitLanguageMaps()
 	mapAbbrToCodePage[L"LV"] = 1257; // Lettisch
 	mapAbbrToCodePage[L"LT"] = 1257; // Litauisch
 	mapAbbrToCodePage[L"BS"] = 1250; // Bosnisch (nicht kyrillisches Bosnisch)
-
-	bDone = true;
 }
 
 CString LocalizedNames::GetLanguageName(const CString& sAbbr, bool bMixed)
 {
 	if (bMixed)
-		return GetMixedLanguageName(sAbbr);
+		return GetInstance().GetMixedLanguageName(sAbbr);
 
 	// Werte nicht in InitLanguageMaps mappen.
 	CString sKey = MakeUpper(sAbbr);
@@ -176,11 +163,11 @@ CString LocalizedNames::GetLanguageName(const CString& sAbbr, bool bMixed)
 CString LocalizedNames::GetLanguageAbbr(const CString& sName, bool bMixed)
 {
 	if (bMixed)
-		return GetMixedLanguageAbbr(sName);
+		return GetInstance().GetMixedLanguageAbbr(sName);
 
-	InitLanguageMaps();
+	LocalizedNames& inst = GetInstance();
 
-	for (const auto& [key, value] : mapAbbrToLangName)
+	for (const auto& [key, value] : inst.mapAbbrToLangName)
 	{
 		if (value == sName)
 			return key;
@@ -192,20 +179,20 @@ CString LocalizedNames::GetLanguageAbbr(const CString& sName, bool bMixed)
 
 CString LocalizedNames::GetLanguageAbbr(WORD nLCID)
 {
-	InitLanguageMaps();
+	LocalizedNames& inst = GetInstance();
 
-	auto it = mapLCIDToAbbr.find(nLCID);
-	ASSERT(it != mapLCIDToAbbr.end());
-	return (it != mapLCIDToAbbr.end()) ? it->second : CString();
+	auto it = inst.mapLCIDToAbbr.find(nLCID);
+	ASSERT(it != inst.mapLCIDToAbbr.end());
+	return (it != inst.mapLCIDToAbbr.end()) ? it->second : CString();
 }
 
 int LocalizedNames::GetLCID(const CString& sAbbr)
 {
-	InitLanguageMaps();
+	LocalizedNames& inst = GetInstance();
 
-	auto it = mapAbbrToLCID.find(MakeUpper(sAbbr));
-	ASSERT(it != mapAbbrToLCID.end());
-	return (it != mapAbbrToLCID.end()) ? it->second : -1;
+	auto it = inst.mapAbbrToLCID.find(MakeUpper(sAbbr));
+	ASSERT(it != inst.mapAbbrToLCID.end());
+	return (it != inst.mapAbbrToLCID.end()) ? it->second : -1;
 }
 
 WORD LocalizedNames::GetSystemLCID()
@@ -243,11 +230,11 @@ CString LocalizedNames::GetRegionAbbr(WORD nLCode)
 
 int LocalizedNames::GetLanguageCodepage(const CString& sAbbr)
 {
-	InitLanguageMaps();
+	LocalizedNames& inst = GetInstance();
 
-	auto it = mapAbbrToCodePage.find(MakeUpper(sAbbr));
-	ASSERT(it != mapAbbrToCodePage.end());
-	return (it != mapAbbrToCodePage.end()) ? it->second : -1;
+	auto it = inst.mapAbbrToCodePage.find(MakeUpper(sAbbr));
+	ASSERT(it != inst.mapAbbrToCodePage.end());
+	return (it != inst.mapAbbrToCodePage.end()) ? it->second : -1;
 }
 
 CString LocalizedNames::GetRegionName(const CString& sAbbr)
@@ -308,8 +295,6 @@ CString LocalizedNames::GetRegionName(const CString& sAbbr)
 
 CString LocalizedNames::GetMixedLanguageName(const CString& sAbbr)
 {
-	InitLanguageMaps();
-
 	auto it = mapAbbrToLangName.find(MakeUpper(sAbbr));
 	ASSERT(it != mapAbbrToLangName.end());
 	if (it == mapAbbrToLangName.end())
@@ -327,8 +312,6 @@ CString LocalizedNames::GetMixedLanguageName(const CString& sAbbr)
 
 CString LocalizedNames::GetMixedLanguageAbbr(const CString& sMixedName)
 {
-	InitLanguageMaps();
-
 	CString sAbbr;
 	int ind = sMixedName.Find(L' ');
 	if (ind < 0)
