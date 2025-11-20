@@ -1,5 +1,6 @@
 ﻿#include "stdafx.h"
 #include "LocalizedNames.h"
+#include <map>
 
 #pragma warning(push)
 #pragma warning(disable: 4566) // cannot be represented in the current code page
@@ -12,9 +13,9 @@ namespace LocalizedNames
 	CString GetMixedLanguageAbbr(const CString& sMixedName);
 	CString MakeUpper(CString s) { return s.MakeUpper(); }
 
-	CMapStringToString mapAbbrToLangName;
-	CMap<CString, LPCTSTR, int, int> mapAbbrToLCID, mapAbbrToCodePage;
-	CMap<int, int, CString, const CString&> mapLCIDToAbbr;
+	std::map<CString, CString> mapAbbrToLangName;
+	std::map<CString, int> mapAbbrToLCID, mapAbbrToCodePage;
+	std::map<int, CString> mapLCIDToAbbr;
 }
 
 void LocalizedNames::InitLanguageMaps()
@@ -24,106 +25,106 @@ void LocalizedNames::InitLanguageMaps()
 		return;
 
 	// die Originalnamen in jeweiliger Sprache mappen
-	mapAbbrToLangName.SetAt(L"DE", L"Deutsch");
-	mapAbbrToLangName.SetAt(L"EN", L"English");
-	mapAbbrToLangName.SetAt(L"IT", L"Italiano");
-	mapAbbrToLangName.SetAt(L"HR", L"Hrvatski");
-	mapAbbrToLangName.SetAt(L"NL", L"Nederlands");
-	mapAbbrToLangName.SetAt(L"FR", L"Français");
-	mapAbbrToLangName.SetAt(L"DA", L"Dansk");              // Dänisch
-	mapAbbrToLangName.SetAt(L"PL", L"Polski");
-	mapAbbrToLangName.SetAt(L"HU", L"Magyar");             // Ungarisch
-	mapAbbrToLangName.SetAt(L"FL", L"Vlaams");             // Flämisch
-	mapAbbrToLangName.SetAt(L"EL", L"Ελληνικά");           // Griechisch
-	mapAbbrToLangName.SetAt(L"ES", L"Español");
-	mapAbbrToLangName.SetAt(L"TR", L"Türkçe");
-	mapAbbrToLangName.SetAt(L"CZ", L"Česky");              // Tschechisch
-	mapAbbrToLangName.SetAt(L"RU", L"Русский");            // Russisch
-	mapAbbrToLangName.SetAt(L"UA", L"Українська");         // Ukrainisch
-	mapAbbrToLangName.SetAt(L"SQ", L"Shqip");              // Albanisch
-	mapAbbrToLangName.SetAt(L"BG", L"Български");          // Bulgarisch
-	mapAbbrToLangName.SetAt(L"ET", L"Eesti");              // Estnisch
-	mapAbbrToLangName.SetAt(L"FI", L"Suomi");              // Finnisch
-	mapAbbrToLangName.SetAt(L"LV", L"Latviešu");           // Lettisch
-	mapAbbrToLangName.SetAt(L"LT", L"Lietuvių");           // Litauisch
-	mapAbbrToLangName.SetAt(L"PT", L"Português");          // Portugisisch
-	mapAbbrToLangName.SetAt(L"RO", L"Română");             // Rumänisch
-	mapAbbrToLangName.SetAt(L"SV", L"Svenska");            // Schwedisch
-	mapAbbrToLangName.SetAt(L"SR", L"Српски");             // Serbisch
-	mapAbbrToLangName.SetAt(L"SK", L"Slovenčina");         // Slowakisch
-	mapAbbrToLangName.SetAt(L"SL", L"Slovenščina");        // Slowenisch
-	mapAbbrToLangName.SetAt(L"NO", L"Norsk (bokmål)");     // Norwegisch
-	mapAbbrToLangName.SetAt(L"BS", L"Bosansky");           // Bosnisch
+	mapAbbrToLangName[L"DE"] = L"Deutsch";
+	mapAbbrToLangName[L"EN"] = L"English";
+	mapAbbrToLangName[L"IT"] = L"Italiano";
+	mapAbbrToLangName[L"HR"] = L"Hrvatski";
+	mapAbbrToLangName[L"NL"] = L"Nederlands";
+	mapAbbrToLangName[L"FR"] = L"Français";
+	mapAbbrToLangName[L"DA"] = L"Dansk";              // Dänisch
+	mapAbbrToLangName[L"PL"] = L"Polski";
+	mapAbbrToLangName[L"HU"] = L"Magyar";             // Ungarisch
+	mapAbbrToLangName[L"FL"] = L"Vlaams";             // Flämisch
+	mapAbbrToLangName[L"EL"] = L"Ελληνικά";           // Griechisch
+	mapAbbrToLangName[L"ES"] = L"Español";
+	mapAbbrToLangName[L"TR"] = L"Türkçe";
+	mapAbbrToLangName[L"CZ"] = L"Česky";              // Tschechisch
+	mapAbbrToLangName[L"RU"] = L"Русский";            // Russisch
+	mapAbbrToLangName[L"UA"] = L"Українська";         // Ukrainisch
+	mapAbbrToLangName[L"SQ"] = L"Shqip";              // Albanisch
+	mapAbbrToLangName[L"BG"] = L"Български";          // Bulgarisch
+	mapAbbrToLangName[L"ET"] = L"Eesti";              // Estnisch
+	mapAbbrToLangName[L"FI"] = L"Suomi";              // Finnisch
+	mapAbbrToLangName[L"LV"] = L"Latviešu";           // Lettisch
+	mapAbbrToLangName[L"LT"] = L"Lietuvių";           // Litauisch
+	mapAbbrToLangName[L"PT"] = L"Português";          // Portugisisch
+	mapAbbrToLangName[L"RO"] = L"Română";             // Rumänisch
+	mapAbbrToLangName[L"SV"] = L"Svenska";            // Schwedisch
+	mapAbbrToLangName[L"SR"] = L"Српски";             // Serbisch
+	mapAbbrToLangName[L"SK"] = L"Slovenčina";         // Slowakisch
+	mapAbbrToLangName[L"SL"] = L"Slovenščina";        // Slowenisch
+	mapAbbrToLangName[L"NO"] = L"Norsk (bokmål)";     // Norwegisch
+	mapAbbrToLangName[L"BS"] = L"Bosansky";           // Bosnisch
 
 	// Sprachekürzel zu LCID
-	mapAbbrToLCID.SetAt(L"BG", 0x0402);
-	mapAbbrToLCID.SetAt(L"CZ", 0x0405);
-	mapAbbrToLCID.SetAt(L"DA", 0x0406);
-	mapAbbrToLCID.SetAt(L"DE", 0x0407);
-	mapAbbrToLCID.SetAt(L"EL", 0x0408);
-	mapAbbrToLCID.SetAt(L"EN", 0x0409);
-	mapAbbrToLCID.SetAt(L"ES", 0x040a);
-	mapAbbrToLCID.SetAt(L"FI", 0x040b);
-	mapAbbrToLCID.SetAt(L"FR", 0x040c);
-	mapAbbrToLCID.SetAt(L"HU", 0x040e);
-	mapAbbrToLCID.SetAt(L"IT", 0x0410);
-	mapAbbrToLCID.SetAt(L"NL", 0x0413);
-	mapAbbrToLCID.SetAt(L"PL", 0x0415);
-	mapAbbrToLCID.SetAt(L"RO", 0x0418);
-	mapAbbrToLCID.SetAt(L"RU", 0x0419);
-	mapAbbrToLCID.SetAt(L"HR", 0x041a);
-	mapAbbrToLCID.SetAt(L"SK", 0x041b);
-	mapAbbrToLCID.SetAt(L"SQ", 0x041c);
-	mapAbbrToLCID.SetAt(L"SV", 0x041d);
-	mapAbbrToLCID.SetAt(L"TR", 0x041f);
-	mapAbbrToLCID.SetAt(L"SL", 0x0424);
-	mapAbbrToLCID.SetAt(L"ET", 0x0425);
-	mapAbbrToLCID.SetAt(L"LV", 0x0426);
-	mapAbbrToLCID.SetAt(L"LT", 0x0427);
-	mapAbbrToLCID.SetAt(L"FL", 0x0813);
-	mapAbbrToLCID.SetAt(L"NO", 0x0814);
-	mapAbbrToLCID.SetAt(L"PT", 0x0816);
-	mapAbbrToLCID.SetAt(L"SR", 0x081a); // Serbian (Serbia, Latin)
+	mapAbbrToLCID[L"BG"] = 0x0402;
+	mapAbbrToLCID[L"CZ"] = 0x0405;
+	mapAbbrToLCID[L"DA"] = 0x0406;
+	mapAbbrToLCID[L"DE"] = 0x0407;
+	mapAbbrToLCID[L"EL"] = 0x0408;
+	mapAbbrToLCID[L"EN"] = 0x0409;
+	mapAbbrToLCID[L"ES"] = 0x040a;
+	mapAbbrToLCID[L"FI"] = 0x040b;
+	mapAbbrToLCID[L"FR"] = 0x040c;
+	mapAbbrToLCID[L"HU"] = 0x040e;
+	mapAbbrToLCID[L"IT"] = 0x0410;
+	mapAbbrToLCID[L"NL"] = 0x0413;
+	mapAbbrToLCID[L"PL"] = 0x0415;
+	mapAbbrToLCID[L"RO"] = 0x0418;
+	mapAbbrToLCID[L"RU"] = 0x0419;
+	mapAbbrToLCID[L"HR"] = 0x041a;
+	mapAbbrToLCID[L"SK"] = 0x041b;
+	mapAbbrToLCID[L"SQ"] = 0x041c;
+	mapAbbrToLCID[L"SV"] = 0x041d;
+	mapAbbrToLCID[L"TR"] = 0x041f;
+	mapAbbrToLCID[L"SL"] = 0x0424;
+	mapAbbrToLCID[L"ET"] = 0x0425;
+	mapAbbrToLCID[L"LV"] = 0x0426;
+	mapAbbrToLCID[L"LT"] = 0x0427;
+	mapAbbrToLCID[L"FL"] = 0x0813;
+	mapAbbrToLCID[L"NO"] = 0x0814;
+	mapAbbrToLCID[L"PT"] = 0x0816;
+	mapAbbrToLCID[L"SR"] = 0x081a; // Serbian (Serbia, Latin)
 
 	// LCID zu Sprachkürzel
-	for (const CMap<CString, LPCTSTR, int, int>::CPair* p = mapAbbrToLCID.PGetFirstAssoc(); p; p = mapAbbrToLCID.PGetNextAssoc(p))
+	for (const auto& [abbr, lcid] : mapAbbrToLCID)
 	{
-		mapLCIDToAbbr.SetAt(p->value, p->key);
+		mapLCIDToAbbr[lcid] = abbr;
 	}
 
-	mapLCIDToAbbr.SetAt(0xc1a, L"SR"); // Serbian (Serbia, Cyrillic)
+	mapLCIDToAbbr[0xc1a] = L"SR"; // Serbian (Serbia, Cyrillic)
 
 	// Sprache zu CodePage
-	mapAbbrToCodePage.SetAt(L"DE", 1252);
-	mapAbbrToCodePage.SetAt(L"EN", 1252);
-	mapAbbrToCodePage.SetAt(L"FR", 1252);
-	mapAbbrToCodePage.SetAt(L"RU", 1251);
-	mapAbbrToCodePage.SetAt(L"IT", 1252);
-	mapAbbrToCodePage.SetAt(L"NL", 1252);
-	mapAbbrToCodePage.SetAt(L"ES", 1252); // Spanisch
-	mapAbbrToCodePage.SetAt(L"CZ", 1250); // Tschechisch
-	mapAbbrToCodePage.SetAt(L"HU", 1250); // Ungarisch
-	mapAbbrToCodePage.SetAt(L"TR", 1254);
-	mapAbbrToCodePage.SetAt(L"PL", 1250);
-	mapAbbrToCodePage.SetAt(L"UK", 1252);
-	mapAbbrToCodePage.SetAt(L"FL", 1252);
-	mapAbbrToCodePage.SetAt(L"NO", 1252); // Norwegisch
-	mapAbbrToCodePage.SetAt(L"EL", 1253); // Griechisch
-	mapAbbrToCodePage.SetAt(L"PT", 1252); // Portugiesisch
-	mapAbbrToCodePage.SetAt(L"RO", 1250); // Rumänisch
-	mapAbbrToCodePage.SetAt(L"SV", 1252); // Schwedisch
-	mapAbbrToCodePage.SetAt(L"SR", 1251); // Serbisch (kyrillisch)
-	mapAbbrToCodePage.SetAt(L"SK", 1252); // Slowakisch
-	mapAbbrToCodePage.SetAt(L"SL", 1252); // Slowenisch
-	mapAbbrToCodePage.SetAt(L"SQ", 1250); // Albanisch
-	mapAbbrToCodePage.SetAt(L"ET", 1257); // Estnisch
-	mapAbbrToCodePage.SetAt(L"FI", 1252); // Finnisch
-	mapAbbrToCodePage.SetAt(L"BG", 1251); // Bulgarisch
-	mapAbbrToCodePage.SetAt(L"DA", 1252); // Dänisch
-	mapAbbrToCodePage.SetAt(L"HR", 1250); // Kroatisch
-	mapAbbrToCodePage.SetAt(L"LV", 1257); // Lettisch
-	mapAbbrToCodePage.SetAt(L"LT", 1257); // Litauisch
-	mapAbbrToCodePage.SetAt(L"BS", 1250); // Bosnisch (nicht kyrillisches Bosnisch)
+	mapAbbrToCodePage[L"DE"] = 1252;
+	mapAbbrToCodePage[L"EN"] = 1252;
+	mapAbbrToCodePage[L"FR"] = 1252;
+	mapAbbrToCodePage[L"RU"] = 1251;
+	mapAbbrToCodePage[L"IT"] = 1252;
+	mapAbbrToCodePage[L"NL"] = 1252;
+	mapAbbrToCodePage[L"ES"] = 1252; // Spanisch
+	mapAbbrToCodePage[L"CZ"] = 1250; // Tschechisch
+	mapAbbrToCodePage[L"HU"] = 1250; // Ungarisch
+	mapAbbrToCodePage[L"TR"] = 1254;
+	mapAbbrToCodePage[L"PL"] = 1250;
+	mapAbbrToCodePage[L"UK"] = 1252;
+	mapAbbrToCodePage[L"FL"] = 1252;
+	mapAbbrToCodePage[L"NO"] = 1252; // Norwegisch
+	mapAbbrToCodePage[L"EL"] = 1253; // Griechisch
+	mapAbbrToCodePage[L"PT"] = 1252; // Portugiesisch
+	mapAbbrToCodePage[L"RO"] = 1250; // Rumänisch
+	mapAbbrToCodePage[L"SV"] = 1252; // Schwedisch
+	mapAbbrToCodePage[L"SR"] = 1251; // Serbisch (kyrillisch)
+	mapAbbrToCodePage[L"SK"] = 1252; // Slowakisch
+	mapAbbrToCodePage[L"SL"] = 1252; // Slowenisch
+	mapAbbrToCodePage[L"SQ"] = 1250; // Albanisch
+	mapAbbrToCodePage[L"ET"] = 1257; // Estnisch
+	mapAbbrToCodePage[L"FI"] = 1252; // Finnisch
+	mapAbbrToCodePage[L"BG"] = 1251; // Bulgarisch
+	mapAbbrToCodePage[L"DA"] = 1252; // Dänisch
+	mapAbbrToCodePage[L"HR"] = 1250; // Kroatisch
+	mapAbbrToCodePage[L"LV"] = 1257; // Lettisch
+	mapAbbrToCodePage[L"LT"] = 1257; // Litauisch
+	mapAbbrToCodePage[L"BS"] = 1250; // Bosnisch (nicht kyrillisches Bosnisch)
 
 	bDone = true;
 }
@@ -179,10 +180,10 @@ CString LocalizedNames::GetLanguageAbbr(const CString& sName, BOOL bMixed)
 
 	InitLanguageMaps();
 
-	for (const CMapStringToString::CPair* p = mapAbbrToLangName.PGetFirstAssoc(); p; p = mapAbbrToLangName.PGetNextAssoc(p))
+	for (const auto& [key, value] : mapAbbrToLangName)
 	{
-		if (p->value == sName)
-			return p->key;
+		if (value == sName)
+			return key;
 	}
 
 	ASSERT(FALSE);
@@ -193,18 +194,18 @@ CString LocalizedNames::GetLanguageAbbr(WORD nLCID)
 {
 	InitLanguageMaps();
 
-	CString sAbbr;
-	VERIFY(mapLCIDToAbbr.Lookup(nLCID, sAbbr));
-	return sAbbr;
+	auto it = mapLCIDToAbbr.find(nLCID);
+	VERIFY(it != mapLCIDToAbbr.end());
+	return it->second;
 }
 
 int LocalizedNames::GetLCID(const CString& sAbbr)
 {
 	InitLanguageMaps();
 
-	int nLCID = -1;
-	VERIFY(mapAbbrToLCID.Lookup(MakeUpper(sAbbr), nLCID));
-	return nLCID;
+	auto it = mapAbbrToLCID.find(MakeUpper(sAbbr));
+	VERIFY(it != mapAbbrToLCID.end());
+	return it->second;
 }
 
 WORD LocalizedNames::GetSystemLCID()
@@ -244,9 +245,9 @@ int LocalizedNames::GetLanguageCodepage(const CString& sAbbr)
 {
 	InitLanguageMaps();
 
-	int nCP = -1;
-	VERIFY(mapAbbrToCodePage.Lookup(MakeUpper(sAbbr), nCP));
-	return nCP;
+	auto it = mapAbbrToCodePage.find(MakeUpper(sAbbr));
+	VERIFY(it != mapAbbrToCodePage.end());
+	return it->second;
 }
 
 CString LocalizedNames::GetRegionName(const CString& sAbbr)
@@ -309,8 +310,9 @@ CString LocalizedNames::GetMixedLanguageName(const CString& sAbbr)
 {
 	InitLanguageMaps();
 
-	CString sName;
-	VERIFY(mapAbbrToLangName.Lookup(MakeUpper(sAbbr), sName));
+	auto it = mapAbbrToLangName.find(MakeUpper(sAbbr));
+	VERIFY(it != mapAbbrToLangName.end());
+	CString sName = it->second;
 	CString sTrName = GetLanguageName(sAbbr, FALSE);
 
 	if (sName == sTrName)
@@ -332,10 +334,10 @@ CString LocalizedNames::GetMixedLanguageAbbr(const CString& sMixedName)
 
 	CString sLangName = sMixedName.Left(ind);
 
-	for (const CMapStringToString::CPair* p = mapAbbrToLangName.PGetFirstAssoc(); p; p = mapAbbrToLangName.PGetNextAssoc(p))
+	for (const auto& [key, value] : mapAbbrToLangName)
 	{
-		if (p->value == sLangName)
-			return p->key;
+		if (value == sLangName)
+			return key;
 	}
 
 	ASSERT(FALSE);
