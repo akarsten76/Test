@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include "LocalizedNames.h"
 #include <map>
 
@@ -129,7 +129,7 @@ void LocalizedNames::InitLanguageMaps()
 	bDone = true;
 }
 
-CString LocalizedNames::GetLanguageName(const CString& sAbbr, BOOL bMixed)
+CString LocalizedNames::GetLanguageName(const CString& sAbbr, bool bMixed)
 {
 	if (bMixed)
 		return GetMixedLanguageName(sAbbr);
@@ -169,11 +169,11 @@ CString LocalizedNames::GetLanguageName(const CString& sAbbr, BOOL bMixed)
 	if (sKey == L"NO") return _TR(L"Norwegisch");
 	if (sKey == L"BS") return _TR(L"Bosnisch");
 
-	ASSERT(FALSE);
+	ASSERT(false);
 	return L"";
 }
 
-CString LocalizedNames::GetLanguageAbbr(const CString& sName, BOOL bMixed)
+CString LocalizedNames::GetLanguageAbbr(const CString& sName, bool bMixed)
 {
 	if (bMixed)
 		return GetMixedLanguageAbbr(sName);
@@ -186,7 +186,7 @@ CString LocalizedNames::GetLanguageAbbr(const CString& sName, BOOL bMixed)
 			return key;
 	}
 
-	ASSERT(FALSE);
+	ASSERT(false);
 	return L"";
 }
 
@@ -302,7 +302,7 @@ CString LocalizedNames::GetRegionName(const CString& sAbbr)
 	if (sKey == L"GLB") return L"Global"; // kein _TR
 	if (sKey == L"UKD") return L"United Kingdom"; // richtig ist GBR
 
-	ASSERT(FALSE);
+	ASSERT(false);
 	return sKey;
 }
 
@@ -315,7 +315,7 @@ CString LocalizedNames::GetMixedLanguageName(const CString& sAbbr)
 	if (it == mapAbbrToLangName.end())
 		return CString();
 	CString sName = it->second;
-	CString sTrName = GetLanguageName(sAbbr, FALSE);
+	CString sTrName = GetLanguageName(sAbbr, false);
 
 	if (sName == sTrName)
 		return sName;
@@ -342,7 +342,7 @@ CString LocalizedNames::GetMixedLanguageAbbr(const CString& sMixedName)
 			return key;
 	}
 
-	ASSERT(FALSE);
+	ASSERT(false);
 	return L"";
 }
 
