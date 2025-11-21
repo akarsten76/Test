@@ -26,7 +26,7 @@ private:
 	CString GetMixedLanguageAbbr(const CString& sMixedName);
 	static CString MakeUpper(CString s) { return s.MakeUpper(); }
 
-	std::map<CString, CString> mapAbbrToLangName;
-	std::map<CString, int> mapAbbrToLCID, mapAbbrToCodePage;
-	std::map<int, CString> mapLCIDToAbbr;
+	std::map<CString, CString> m_mapAbbrToLangName;
+	std::map<CString, int> m_mapAbbrToLCID, m_mapAbbrToCodePage;
+	std::map<int, CString> m_mapLCIDToAbbr;
 };
