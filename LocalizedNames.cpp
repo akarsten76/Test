@@ -14,106 +14,106 @@ LocalizedNames& LocalizedNames::GetInstance()
 LocalizedNames::LocalizedNames()
 {
 	// die Originalnamen in jeweiliger Sprache mappen
-	mapAbbrToLangName[L"DE"] = L"Deutsch";
-	mapAbbrToLangName[L"EN"] = L"English";
-	mapAbbrToLangName[L"IT"] = L"Italiano";
-	mapAbbrToLangName[L"HR"] = L"Hrvatski";
-	mapAbbrToLangName[L"NL"] = L"Nederlands";
-	mapAbbrToLangName[L"FR"] = L"Français";
-	mapAbbrToLangName[L"DA"] = L"Dansk";              // Dänisch
-	mapAbbrToLangName[L"PL"] = L"Polski";
-	mapAbbrToLangName[L"HU"] = L"Magyar";             // Ungarisch
-	mapAbbrToLangName[L"FL"] = L"Vlaams";             // Flämisch
-	mapAbbrToLangName[L"EL"] = L"Ελληνικά";           // Griechisch
-	mapAbbrToLangName[L"ES"] = L"Español";
-	mapAbbrToLangName[L"TR"] = L"Türkçe";
-	mapAbbrToLangName[L"CZ"] = L"Česky";              // Tschechisch
-	mapAbbrToLangName[L"RU"] = L"Русский";            // Russisch
-	mapAbbrToLangName[L"UA"] = L"Українська";         // Ukrainisch
-	mapAbbrToLangName[L"SQ"] = L"Shqip";              // Albanisch
-	mapAbbrToLangName[L"BG"] = L"Български";          // Bulgarisch
-	mapAbbrToLangName[L"ET"] = L"Eesti";              // Estnisch
-	mapAbbrToLangName[L"FI"] = L"Suomi";              // Finnisch
-	mapAbbrToLangName[L"LV"] = L"Latviešu";           // Lettisch
-	mapAbbrToLangName[L"LT"] = L"Lietuvių";           // Litauisch
-	mapAbbrToLangName[L"PT"] = L"Português";          // Portugisisch
-	mapAbbrToLangName[L"RO"] = L"Română";             // Rumänisch
-	mapAbbrToLangName[L"SV"] = L"Svenska";            // Schwedisch
-	mapAbbrToLangName[L"SR"] = L"Српски";             // Serbisch
-	mapAbbrToLangName[L"SK"] = L"Slovenčina";         // Slowakisch
-	mapAbbrToLangName[L"SL"] = L"Slovenščina";        // Slowenisch
-	mapAbbrToLangName[L"NO"] = L"Norsk (bokmål)";     // Norwegisch
-	mapAbbrToLangName[L"BS"] = L"Bosansky";           // Bosnisch
+	m_mapAbbrToLangName[L"DE"] = L"Deutsch";
+	m_mapAbbrToLangName[L"EN"] = L"English";
+	m_mapAbbrToLangName[L"IT"] = L"Italiano";
+	m_mapAbbrToLangName[L"HR"] = L"Hrvatski";
+	m_mapAbbrToLangName[L"NL"] = L"Nederlands";
+	m_mapAbbrToLangName[L"FR"] = L"Français";
+	m_mapAbbrToLangName[L"DA"] = L"Dansk";              // Dänisch
+	m_mapAbbrToLangName[L"PL"] = L"Polski";
+	m_mapAbbrToLangName[L"HU"] = L"Magyar";             // Ungarisch
+	m_mapAbbrToLangName[L"FL"] = L"Vlaams";             // Flämisch
+	m_mapAbbrToLangName[L"EL"] = L"Ελληνικά";           // Griechisch
+	m_mapAbbrToLangName[L"ES"] = L"Español";
+	m_mapAbbrToLangName[L"TR"] = L"Türkçe";
+	m_mapAbbrToLangName[L"CZ"] = L"Česky";              // Tschechisch
+	m_mapAbbrToLangName[L"RU"] = L"Русский";            // Russisch
+	m_mapAbbrToLangName[L"UA"] = L"Українська";         // Ukrainisch
+	m_mapAbbrToLangName[L"SQ"] = L"Shqip";              // Albanisch
+	m_mapAbbrToLangName[L"BG"] = L"Български";          // Bulgarisch
+	m_mapAbbrToLangName[L"ET"] = L"Eesti";              // Estnisch
+	m_mapAbbrToLangName[L"FI"] = L"Suomi";              // Finnisch
+	m_mapAbbrToLangName[L"LV"] = L"Latviešu";           // Lettisch
+	m_mapAbbrToLangName[L"LT"] = L"Lietuvių";           // Litauisch
+	m_mapAbbrToLangName[L"PT"] = L"Português";          // Portugisisch
+	m_mapAbbrToLangName[L"RO"] = L"Română";             // Rumänisch
+	m_mapAbbrToLangName[L"SV"] = L"Svenska";            // Schwedisch
+	m_mapAbbrToLangName[L"SR"] = L"Српски";             // Serbisch
+	m_mapAbbrToLangName[L"SK"] = L"Slovenčina";         // Slowakisch
+	m_mapAbbrToLangName[L"SL"] = L"Slovenščina";        // Slowenisch
+	m_mapAbbrToLangName[L"NO"] = L"Norsk (bokmål)";     // Norwegisch
+	m_mapAbbrToLangName[L"BS"] = L"Bosansky";           // Bosnisch
 
 	// Sprachekürzel zu LCID
-	mapAbbrToLCID[L"BG"] = 0x0402;
-	mapAbbrToLCID[L"CZ"] = 0x0405;
-	mapAbbrToLCID[L"DA"] = 0x0406;
-	mapAbbrToLCID[L"DE"] = 0x0407;
-	mapAbbrToLCID[L"EL"] = 0x0408;
-	mapAbbrToLCID[L"EN"] = 0x0409;
-	mapAbbrToLCID[L"ES"] = 0x040a;
-	mapAbbrToLCID[L"FI"] = 0x040b;
-	mapAbbrToLCID[L"FR"] = 0x040c;
-	mapAbbrToLCID[L"HU"] = 0x040e;
-	mapAbbrToLCID[L"IT"] = 0x0410;
-	mapAbbrToLCID[L"NL"] = 0x0413;
-	mapAbbrToLCID[L"PL"] = 0x0415;
-	mapAbbrToLCID[L"RO"] = 0x0418;
-	mapAbbrToLCID[L"RU"] = 0x0419;
-	mapAbbrToLCID[L"HR"] = 0x041a;
-	mapAbbrToLCID[L"SK"] = 0x041b;
-	mapAbbrToLCID[L"SQ"] = 0x041c;
-	mapAbbrToLCID[L"SV"] = 0x041d;
-	mapAbbrToLCID[L"TR"] = 0x041f;
-	mapAbbrToLCID[L"SL"] = 0x0424;
-	mapAbbrToLCID[L"ET"] = 0x0425;
-	mapAbbrToLCID[L"LV"] = 0x0426;
-	mapAbbrToLCID[L"LT"] = 0x0427;
-	mapAbbrToLCID[L"FL"] = 0x0813;
-	mapAbbrToLCID[L"NO"] = 0x0814;
-	mapAbbrToLCID[L"PT"] = 0x0816;
-	mapAbbrToLCID[L"SR"] = 0x081a; // Serbian (Serbia, Latin)
+	m_mapAbbrToLCID[L"BG"] = 0x0402;
+	m_mapAbbrToLCID[L"CZ"] = 0x0405;
+	m_mapAbbrToLCID[L"DA"] = 0x0406;
+	m_mapAbbrToLCID[L"DE"] = 0x0407;
+	m_mapAbbrToLCID[L"EL"] = 0x0408;
+	m_mapAbbrToLCID[L"EN"] = 0x0409;
+	m_mapAbbrToLCID[L"ES"] = 0x040a;
+	m_mapAbbrToLCID[L"FI"] = 0x040b;
+	m_mapAbbrToLCID[L"FR"] = 0x040c;
+	m_mapAbbrToLCID[L"HU"] = 0x040e;
+	m_mapAbbrToLCID[L"IT"] = 0x0410;
+	m_mapAbbrToLCID[L"NL"] = 0x0413;
+	m_mapAbbrToLCID[L"PL"] = 0x0415;
+	m_mapAbbrToLCID[L"RO"] = 0x0418;
+	m_mapAbbrToLCID[L"RU"] = 0x0419;
+	m_mapAbbrToLCID[L"HR"] = 0x041a;
+	m_mapAbbrToLCID[L"SK"] = 0x041b;
+	m_mapAbbrToLCID[L"SQ"] = 0x041c;
+	m_mapAbbrToLCID[L"SV"] = 0x041d;
+	m_mapAbbrToLCID[L"TR"] = 0x041f;
+	m_mapAbbrToLCID[L"SL"] = 0x0424;
+	m_mapAbbrToLCID[L"ET"] = 0x0425;
+	m_mapAbbrToLCID[L"LV"] = 0x0426;
+	m_mapAbbrToLCID[L"LT"] = 0x0427;
+	m_mapAbbrToLCID[L"FL"] = 0x0813;
+	m_mapAbbrToLCID[L"NO"] = 0x0814;
+	m_mapAbbrToLCID[L"PT"] = 0x0816;
+	m_mapAbbrToLCID[L"SR"] = 0x081a; // Serbian (Serbia, Latin)
 
 	// LCID zu Sprachkürzel
-	for (const auto& [abbr, lcid] : mapAbbrToLCID)
+	for (const auto& [abbr, lcid] : m_mapAbbrToLCID)
 	{
-		mapLCIDToAbbr[lcid] = abbr;
+		m_mapLCIDToAbbr[lcid] = abbr;
 	}
 
-	mapLCIDToAbbr[0xc1a] = L"SR"; // Serbian (Serbia, Cyrillic)
+	m_mapLCIDToAbbr[0xc1a] = L"SR"; // Serbian (Serbia, Cyrillic)
 
 	// Sprache zu CodePage
-	mapAbbrToCodePage[L"DE"] = 1252;
-	mapAbbrToCodePage[L"EN"] = 1252;
-	mapAbbrToCodePage[L"FR"] = 1252;
-	mapAbbrToCodePage[L"RU"] = 1251;
-	mapAbbrToCodePage[L"IT"] = 1252;
-	mapAbbrToCodePage[L"NL"] = 1252;
-	mapAbbrToCodePage[L"ES"] = 1252; // Spanisch
-	mapAbbrToCodePage[L"CZ"] = 1250; // Tschechisch
-	mapAbbrToCodePage[L"HU"] = 1250; // Ungarisch
-	mapAbbrToCodePage[L"TR"] = 1254;
-	mapAbbrToCodePage[L"PL"] = 1250;
-	mapAbbrToCodePage[L"UK"] = 1252;
-	mapAbbrToCodePage[L"FL"] = 1252;
-	mapAbbrToCodePage[L"NO"] = 1252; // Norwegisch
-	mapAbbrToCodePage[L"EL"] = 1253; // Griechisch
-	mapAbbrToCodePage[L"PT"] = 1252; // Portugiesisch
-	mapAbbrToCodePage[L"RO"] = 1250; // Rumänisch
-	mapAbbrToCodePage[L"SV"] = 1252; // Schwedisch
-	mapAbbrToCodePage[L"SR"] = 1251; // Serbisch (kyrillisch)
-	mapAbbrToCodePage[L"SK"] = 1252; // Slowakisch
-	mapAbbrToCodePage[L"SL"] = 1252; // Slowenisch
-	mapAbbrToCodePage[L"SQ"] = 1250; // Albanisch
-	mapAbbrToCodePage[L"ET"] = 1257; // Estnisch
-	mapAbbrToCodePage[L"FI"] = 1252; // Finnisch
-	mapAbbrToCodePage[L"BG"] = 1251; // Bulgarisch
-	mapAbbrToCodePage[L"DA"] = 1252; // Dänisch
-	mapAbbrToCodePage[L"HR"] = 1250; // Kroatisch
-	mapAbbrToCodePage[L"LV"] = 1257; // Lettisch
-	mapAbbrToCodePage[L"LT"] = 1257; // Litauisch
-	mapAbbrToCodePage[L"BS"] = 1250; // Bosnisch (nicht kyrillisches Bosnisch)
+	m_mapAbbrToCodePage[L"DE"] = 1252;
+	m_mapAbbrToCodePage[L"EN"] = 1252;
+	m_mapAbbrToCodePage[L"FR"] = 1252;
+	m_mapAbbrToCodePage[L"RU"] = 1251;
+	m_mapAbbrToCodePage[L"IT"] = 1252;
+	m_mapAbbrToCodePage[L"NL"] = 1252;
+	m_mapAbbrToCodePage[L"ES"] = 1252; // Spanisch
+	m_mapAbbrToCodePage[L"CZ"] = 1250; // Tschechisch
+	m_mapAbbrToCodePage[L"HU"] = 1250; // Ungarisch
+	m_mapAbbrToCodePage[L"TR"] = 1254;
+	m_mapAbbrToCodePage[L"PL"] = 1250;
+	m_mapAbbrToCodePage[L"UK"] = 1252;
+	m_mapAbbrToCodePage[L"FL"] = 1252;
+	m_mapAbbrToCodePage[L"NO"] = 1252; // Norwegisch
+	m_mapAbbrToCodePage[L"EL"] = 1253; // Griechisch
+	m_mapAbbrToCodePage[L"PT"] = 1252; // Portugiesisch
+	m_mapAbbrToCodePage[L"RO"] = 1250; // Rumänisch
+	m_mapAbbrToCodePage[L"SV"] = 1252; // Schwedisch
+	m_mapAbbrToCodePage[L"SR"] = 1251; // Serbisch (kyrillisch)
+	m_mapAbbrToCodePage[L"SK"] = 1252; // Slowakisch
+	m_mapAbbrToCodePage[L"SL"] = 1252; // Slowenisch
+	m_mapAbbrToCodePage[L"SQ"] = 1250; // Albanisch
+	m_mapAbbrToCodePage[L"ET"] = 1257; // Estnisch
+	m_mapAbbrToCodePage[L"FI"] = 1252; // Finnisch
+	m_mapAbbrToCodePage[L"BG"] = 1251; // Bulgarisch
+	m_mapAbbrToCodePage[L"DA"] = 1252; // Dänisch
+	m_mapAbbrToCodePage[L"HR"] = 1250; // Kroatisch
+	m_mapAbbrToCodePage[L"LV"] = 1257; // Lettisch
+	m_mapAbbrToCodePage[L"LT"] = 1257; // Litauisch
+	m_mapAbbrToCodePage[L"BS"] = 1250; // Bosnisch (nicht kyrillisches Bosnisch)
 }
 
 CString LocalizedNames::GetLanguageName(const CString& sAbbr, bool bMixed)
@@ -167,7 +167,7 @@ CString LocalizedNames::GetLanguageAbbr(const CString& sName, bool bMixed)
 
 	LocalizedNames& inst = GetInstance();
 
-	for (const auto& [key, value] : inst.mapAbbrToLangName)
+	for (const auto& [key, value] : inst.m_mapAbbrToLangName)
 	{
 		if (value == sName)
 			return key;
@@ -181,18 +181,18 @@ CString LocalizedNames::GetLanguageAbbr(WORD nLCID)
 {
 	LocalizedNames& inst = GetInstance();
 
-	auto it = inst.mapLCIDToAbbr.find(nLCID);
-	ASSERT(it != inst.mapLCIDToAbbr.end());
-	return (it != inst.mapLCIDToAbbr.end()) ? it->second : CString();
+	auto it = inst.m_mapLCIDToAbbr.find(nLCID);
+	ASSERT(it != inst.m_mapLCIDToAbbr.end());
+	return (it != inst.m_mapLCIDToAbbr.end()) ? it->second : CString();
 }
 
 int LocalizedNames::GetLCID(const CString& sAbbr)
 {
 	LocalizedNames& inst = GetInstance();
 
-	auto it = inst.mapAbbrToLCID.find(MakeUpper(sAbbr));
-	ASSERT(it != inst.mapAbbrToLCID.end());
-	return (it != inst.mapAbbrToLCID.end()) ? it->second : -1;
+	auto it = inst.m_mapAbbrToLCID.find(MakeUpper(sAbbr));
+	ASSERT(it != inst.m_mapAbbrToLCID.end());
+	return (it != inst.m_mapAbbrToLCID.end()) ? it->second : -1;
 }
 
 WORD LocalizedNames::GetSystemLCID()
@@ -232,9 +232,9 @@ int LocalizedNames::GetLanguageCodepage(const CString& sAbbr)
 {
 	LocalizedNames& inst = GetInstance();
 
-	auto it = inst.mapAbbrToCodePage.find(MakeUpper(sAbbr));
-	ASSERT(it != inst.mapAbbrToCodePage.end());
-	return (it != inst.mapAbbrToCodePage.end()) ? it->second : -1;
+	auto it = inst.m_mapAbbrToCodePage.find(MakeUpper(sAbbr));
+	ASSERT(it != inst.m_mapAbbrToCodePage.end());
+	return (it != inst.m_mapAbbrToCodePage.end()) ? it->second : -1;
 }
 
 CString LocalizedNames::GetRegionName(const CString& sAbbr)
@@ -295,9 +295,9 @@ CString LocalizedNames::GetRegionName(const CString& sAbbr)
 
 CString LocalizedNames::GetMixedLanguageName(const CString& sAbbr)
 {
-	auto it = mapAbbrToLangName.find(MakeUpper(sAbbr));
-	ASSERT(it != mapAbbrToLangName.end());
-	if (it == mapAbbrToLangName.end())
+	auto it = m_mapAbbrToLangName.find(MakeUpper(sAbbr));
+	ASSERT(it != m_mapAbbrToLangName.end());
+	if (it == m_mapAbbrToLangName.end())
 		return CString();
 	CString sName = it->second;
 	CString sTrName = GetLanguageName(sAbbr, false);
@@ -319,7 +319,7 @@ CString LocalizedNames::GetMixedLanguageAbbr(const CString& sMixedName)
 
 	CString sLangName = sMixedName.Left(ind);
 
-	for (const auto& [key, value] : mapAbbrToLangName)
+	for (const auto& [key, value] : m_mapAbbrToLangName)
 	{
 		if (value == sLangName)
 			return key;
